@@ -12,7 +12,7 @@ class ProtobufModifier:
         self.descriptor_pool = protobuf_descriptor_pool.DescriptorPool()
 
     def set_descriptor(self, descriptor_path: str) -> None:
-        with open(descriptor_path, mode='rb') as file:
+        with open(descriptor_path, mode="rb") as file:
             descriptor = protobuf_descriptor_pb2.FileDescriptorSet.FromString(file.read())
             for proto in descriptor.file:
                 self.descriptor_pool.Add(proto)    
@@ -56,9 +56,9 @@ class ProtobufModifier:
         serializedMessage = populated_message.SerializeToString()
         # Prepend the length and compression prefix; 5 bytes in total in big endian byte order.
         # Payload compression is not supported at the moment, so compression bit is always 0.   
-        return len(serializedMessage).to_bytes(5, 'big') + serializedMessage
+        return len(serializedMessage).to_bytes(5, "big") + serializedMessage
 
     def __find_method_by_path(self, path: str) -> protobuf_descriptor.MethodDescriptor:
         # Drop the first '/' from the path and convert the rest to a fully qualified name space.
-        method_path = path.replace('/', '.')[1:]
+        method_path = path.replace("/", ".")[1:]
         return self.descriptor_pool.FindMethodByName(method_path)

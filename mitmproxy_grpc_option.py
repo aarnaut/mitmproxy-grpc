@@ -10,12 +10,12 @@ class GrpcProtobufOptionAddon:
 
     def load(self, loader):
         loader.add_option(
-            name = "descriptor_path",
+            name = "descriptor_file",
             typespec = typing.Optional[str],
             default = None,
-            help = "Add a descriptor file for serialiation and deserialization of protobuf content",
+            help = "Set the descriptor file used for serialiation and deserialization of protobuf content",
         )
 
     def configure(self, updates):
-        if ("descriptor_path" in updates and mitmproxy.ctx.options.descriptor_path != None):
-            self.protobuf_modifier.set_descriptor_file_path(mitmproxy.ctx.options.descriptor_path)
+        if ("descriptor_file" in updates and mitmproxy.ctx.options.descriptor_file != None):
+            self.protobuf_modifier.set_descriptor_file_path(mitmproxy.ctx.options.descriptor_file)
