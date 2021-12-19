@@ -15,7 +15,7 @@ Once in the single flow view, switch to `google.protobuf` content view. The outp
 Deserialization will only work if the gRPC and message definition are present in the descriptor file.
 
 ## Editing content
-Once in the single flow view, use the `:grpc request_body` or `:grpc response_body` to edit the content. Serialization will only work if the gRPC and message definition are present in the descriptor file.
+Once in the single flow view, use the `:grpc request_body` or `:grpc response_body` option to edit the content. Serialization will only work if the gRPC and message definition are present in the descriptor file.
 
 ## Limitations
 * Compressed protobuf content is not supported.
