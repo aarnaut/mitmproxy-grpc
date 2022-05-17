@@ -89,7 +89,7 @@ class ProtobufModifier:
                 text=text,
                 message=empty_message,
                 allow_field_number=True,
-                allow_unknown_field=False,
+                allow_unknown_field=True,
                 descriptor_pool=self.descriptor_pool
             )
         except ParseError as e:
