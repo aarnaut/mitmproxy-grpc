@@ -6,7 +6,8 @@ import mitmproxy
 
 class GrpcProtobufContentView(mitmproxy.contentviews.base.View):
 
-    name = "google.protobuf"
+    name = "gRPC/Protocol Buffer using protoc"
+
     supported_content_types = [
         "application/grpc"
     ]
@@ -24,7 +25,7 @@ class GrpcProtobufContentView(mitmproxy.contentviews.base.View):
         **unknown_metadata,
     ):
         deserialized = self.protobuf_modifier.deserialize(http_message, flow.request.path, data)
-        return "gRPC Protobuf", mitmproxy.contentviews.base.format_text(deserialized)
+        return self.name, mitmproxy.contentviews.base.format_text(deserialized)
 
     def render_priority(self, data: bytes, *, content_type: typing.Optional[str] = None, **metadata) -> float:
         return float(content_type in self.supported_content_types)

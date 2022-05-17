@@ -3,7 +3,7 @@ import protobuf_modification
 
 import mitmproxy
 
-class GrpcProtobufModifierAddon:
+class GrpcCommand:
 
     def __init__(self, protobuf_modifier: protobuf_modification.ProtobufModifier) -> None:
         self.protobuf_modifier = protobuf_modifier
@@ -11,8 +11,8 @@ class GrpcProtobufModifierAddon:
     @mitmproxy.command.command("grpc.options")
     def edit_focus_options(self) -> typing.Sequence[str]:
         focus_options = [
-            "request body",
-            "response body",
+            "request-body",
+            "response-body",
         ]
 
         return focus_options
@@ -24,10 +24,10 @@ class GrpcProtobufModifierAddon:
         response = mitmproxy.ctx.master.view.focus.flow.response
         path = request.path
 
-        if flow_part == "request body":
+        if flow_part == "request-body":
             content = request.get_content(strict=False) or b""
             http_message = request
-        elif flow_part == "response body":
+        elif flow_part == "response-body":
             content = response.get_content(strict=False) or b""
             http_message = response
         else:

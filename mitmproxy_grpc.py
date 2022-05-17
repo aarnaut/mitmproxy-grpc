@@ -1,6 +1,6 @@
+from mitmproxy_grpc_command import GrpcCommand
 import mitmproxy_grpc_content_view as view
-import mitmproxy_grpc_command_addon as addon
-import mitmproxy_grpc_option as option
+from mitmproxy_grpc_option import GrpcOption
 import protobuf_modification
 
 import mitmproxy
@@ -15,6 +15,6 @@ def done():
     mitmproxy.contentviews.remove(contentView)
 
 addons = [
-    option.GrpcProtobufOptionAddon(protobuf_modifier),
-    addon.GrpcProtobufModifierAddon(protobuf_modifier),
+    GrpcOption(protobuf_modifier),
+    GrpcCommand(protobuf_modifier),
 ]
